@@ -15,6 +15,8 @@ Public Class frmContactos
         lstPersonas.DataSource = lPersonas
         lstPersonas.DisplayMember = "NombreCompleto"
         lstPersonas.ValueMember = "Id"
+
+        ctlTelefonos.Etiqueta = "Teléfonos"
     End Sub
 
     Private Sub btnAgregarPersona_Click(sender As Object, e As EventArgs) Handles btnAgregarPersona.Click
@@ -50,6 +52,7 @@ Public Class frmContactos
         objPersona.DNI = txtDNI.Text
         objPersona.Direccion = txtDirec.Text
         objPersona.FechaNacimiento = dtpFecNac.Value
+        objPersona.Telefonos.AddRange(ctlTelefonos.Lista)
 
         If adContactos.RegistrarPersona(objPersona) Then
             lPersonas = adContactos.ListarPersonas()

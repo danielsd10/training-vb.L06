@@ -22,6 +22,7 @@ Partial Class frmContactos
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmContactos))
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.tabContactos = New System.Windows.Forms.TabControl()
         Me.tabPersonas = New System.Windows.Forms.TabPage()
@@ -41,6 +42,7 @@ Partial Class frmContactos
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtNombre = New System.Windows.Forms.TextBox()
+        Me.ctlTelefonos = New LibretaForms.ctlListaFlexible()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -123,6 +125,7 @@ Partial Class frmContactos
         '
         'pnlPersonas
         '
+        Me.pnlPersonas.Controls.Add(Me.ctlTelefonos)
         Me.pnlPersonas.Controls.Add(Me.btnEliminar)
         Me.pnlPersonas.Controls.Add(Me.btnGuardar)
         Me.pnlPersonas.Controls.Add(Me.Label7)
@@ -137,7 +140,7 @@ Partial Class frmContactos
         Me.pnlPersonas.Controls.Add(Me.txtNombre)
         Me.pnlPersonas.Location = New System.Drawing.Point(12, 12)
         Me.pnlPersonas.Name = "pnlPersonas"
-        Me.pnlPersonas.Size = New System.Drawing.Size(413, 287)
+        Me.pnlPersonas.Size = New System.Drawing.Size(413, 376)
         Me.pnlPersonas.TabIndex = 0
         '
         'btnEliminar
@@ -145,7 +148,7 @@ Partial Class frmContactos
         Me.btnEliminar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnEliminar.DialogResult = System.Windows.Forms.DialogResult.OK
         Me.btnEliminar.Enabled = False
-        Me.btnEliminar.Location = New System.Drawing.Point(322, 250)
+        Me.btnEliminar.Location = New System.Drawing.Point(322, 339)
         Me.btnEliminar.Name = "btnEliminar"
         Me.btnEliminar.Size = New System.Drawing.Size(75, 23)
         Me.btnEliminar.TabIndex = 31
@@ -157,7 +160,7 @@ Partial Class frmContactos
         Me.btnGuardar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnGuardar.DialogResult = System.Windows.Forms.DialogResult.OK
         Me.btnGuardar.Enabled = False
-        Me.btnGuardar.Location = New System.Drawing.Point(241, 250)
+        Me.btnGuardar.Location = New System.Drawing.Point(241, 339)
         Me.btnGuardar.Name = "btnGuardar"
         Me.btnGuardar.Size = New System.Drawing.Size(75, 23)
         Me.btnGuardar.TabIndex = 30
@@ -246,6 +249,15 @@ Partial Class frmContactos
         Me.txtNombre.Size = New System.Drawing.Size(264, 20)
         Me.txtNombre.TabIndex = 16
         '
+        'ctlTelefonos
+        '
+        Me.ctlTelefonos.Lista = CType(resources.GetObject("ctlTelefonos.Lista"), System.Collections.Generic.List(Of String))
+        Me.ctlTelefonos.Location = New System.Drawing.Point(22, 187)
+        Me.ctlTelefonos.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.ctlTelefonos.Name = "ctlTelefonos"
+        Me.ctlTelefonos.Size = New System.Drawing.Size(375, 115)
+        Me.ctlTelefonos.TabIndex = 32
+        '
         'frmContactos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -285,4 +297,5 @@ Partial Class frmContactos
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents txtNombre As TextBox
+    Friend WithEvents ctlTelefonos As ctlListaFlexible
 End Class

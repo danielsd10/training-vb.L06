@@ -71,6 +71,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ctlListaFlexible.Designer.vb">
+      <DependentUpon>ctlListaFlexible.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ctlListaFlexible.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="frmContactos.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +101,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ctlListaFlexible.resx">
+      <DependentUpon>ctlListaFlexible.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmContactos.resx">
       <DependentUpon>frmContactos.vb</DependentUpon>
     </EmbeddedResource>
