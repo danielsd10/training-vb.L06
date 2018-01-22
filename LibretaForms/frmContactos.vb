@@ -28,11 +28,13 @@ Public Class frmContactos
         btnGuardar.Enabled = True
         btnEliminar.Enabled = False
         lstPersonas.SelectedIndex = -1
+        ctlTelefonos.LimpiarItems()
         txtNombre.Focus()
     End Sub
 
     Private Sub lstPersonas_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstPersonas.SelectedIndexChanged, lstPersonas.SelectedIndexChanged
         Dim objPersona As Persona
+        Dim strTelefono As String
         If lstPersonas.SelectedIndex > -1 Then
             objPersona = lPersonas(lstPersonas.SelectedIndex)
             txtNombre.Text = objPersona.Nombre
@@ -40,6 +42,10 @@ Public Class frmContactos
             txtDNI.Text = objPersona.DNI
             txtDirec.Text = objPersona.Direccion
             dtpFecNac.Value = objPersona.FechaNacimiento
+            ctlTelefonos.LimpiarItems()
+            For Each strTelefono In objPersona.Telefonos
+                ctlTelefonos.AgregarItem(strTelefono)
+            Next
             btnGuardar.Enabled = True
             btnEliminar.Enabled = True
         End If

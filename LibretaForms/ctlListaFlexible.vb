@@ -46,6 +46,10 @@ Public Class ctlListaFlexible
         End Try
     End Sub
 
+    Public Sub LimpiarItems()
+        lstLista.Items.Clear()
+    End Sub
+
     Private Sub btnAgregar_Click(sender As Object, e As EventArgs) Handles btnAgregar.Click
         If txtValor.Text <> "" Then
             AgregarItem(txtValor.Text)

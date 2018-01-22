@@ -53,7 +53,7 @@ Public Class Contactos
             If params(5).Value > 0 Then
                 objPersona.Id = params(5).Value
                 cmd.CommandText = "RegistrarTelefono"
-		'redefinir número de parámetros
+                'redefinir número de parámetros
                 ReDim params(2)
                 Dim strTelefono As String
                 For Each strTelefono In objPersona.Telefonos
@@ -68,10 +68,10 @@ Public Class Contactos
                     cmd.Parameters.AddRange(params)
 
                     'ejecutar
-		    cmd.ExecuteNonQuery()
+                    cmd.ExecuteNonQuery()
 
                     If params(2).Value <= 0 Then
-		    	'si no se obtuvo Id, cancelar transacción
+                        'si no se obtuvo Id, cancelar transacción
                         ts.Rollback()
                         Return False
                     End If
@@ -81,7 +81,7 @@ Public Class Contactos
                 ts.Commit()
                 Return True
             Else
-	    	'si no se obtuvo Id, cancelar transacción
+                'si no se obtuvo Id, cancelar transacción
                 ts.Rollback()
                 Return False
             End If
@@ -176,6 +176,7 @@ Public Class Contactos
                     objPersona.DNI = reader("dni")
                     objPersona.Direccion = reader("direccion")
                     objPersona.FechaNacimiento = reader("fecha_nacimiento")
+                    ListarTelefonos(objPersona)
                     lstPersonas.Add(objPersona)
                 End While
             End Using
@@ -193,6 +194,44 @@ Public Class Contactos
         'retornar resultados
         Return lstPersonas
     End Function
+
+    Private Sub ListarTelefonos(ByRef objPersona As Persona)
+        Dim cnx As New SqlConnection
+        Dim cmd As New SqlCommand
+        Dim param As SqlParameter
+
+        Try
+            'conectar a base de datos
+            cnx = New SqlConnection(CadenaConexion)
+            cnx.Open()
+
+            'crear comando para ejecutar procedimiento
+            cmd = New SqlCommand()
+            cmd.Connection = cnx
+            cmd.CommandType = CommandType.StoredProcedure
+            cmd.CommandText = "ListarTelefonos"
+
+            'establecer parámetros
+            param = New SqlParameter("Id", SqlDbType.Int)
+            param.Value = objPersona.Id
+            cmd.Parameters.Add(param)
+
+            'pasar resultados a lista de objetos
+            Using reader As SqlDataReader = cmd.ExecuteReader
+                While reader.Read
+                    objPersona.Telefonos.Add(reader("telefono"))
+                End While
+            End Using
+
+        Catch ex As SqlException
+
+        Catch ex As Exception
+
+        Finally
+            'liberar recursos
+            cmd.Dispose()
+        End Try
+    End Sub
 
     Public Function EliminarContacto(Id As Integer) As Boolean
         Dim cnx As New SqlConnection
