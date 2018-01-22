@@ -3,8 +3,8 @@
     Protected _Id As Integer
     Protected _Nombre As String
     Protected _Direccion As String
-    Protected _Telefono As String
-    Protected _Correo As String
+    Protected _Telefonos As List(Of String)
+    Protected _Correos As List(Of String)
 
     'Propiedades
     Public Property Id As Integer
@@ -31,26 +31,28 @@
             _Direccion = value
         End Set
     End Property
-    Public Property Telefono As String
+    Public Property Telefonos As List(Of String)
         Get
-            Return _Telefono
+            Return _Telefonos
         End Get
-        Set(value As String)
-            _Telefono = value
+        Set(value As List(Of String))
+            _Telefonos = value
         End Set
     End Property
-    Public Property Correo As String
+    Public Property Correos As List(Of String)
         Get
-            Return _Correo
+            Return _Correos
         End Get
-        Set(value As String)
-            _Correo = value
+        Set(value As List(Of String))
+            _Correos = value
         End Set
     End Property
 
     'Constructor
     Sub New()
-
+    	'Inicializar listas
+        Me.Telefonos = New List(Of String)
+        Me.Correos = New List(Of String)
     End Sub
 
     'Métodos
